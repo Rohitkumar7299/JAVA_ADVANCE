@@ -1,8 +1,6 @@
-package demo;
-
 import java.sql.*;
 
-public class BatchExecutionInsert {
+public class DeletePreparedStatement {
 
         private static String url  = "jdbc:postgresql://localhost:5433/jdbc_demo?user=postgres&password=123";
         /*private static String user = "postgres";
@@ -14,29 +12,17 @@ public class BatchExecutionInsert {
                 System.out.println("Driver is loaded and registered.");
                 Connection connection = DriverManager.getConnection(url);
                 System.out.println("connection established");
+                //System.out.println(connection);
 
-                String sql = "insert into connection values (?,?,?)";
+                String sql = "Delete from connection where id = ?";
 
-                PreparedStatement st = connection.prepareStatement(sql);
-                st.setInt(1,115);
-                st.setString(2,"aman");
-                st.setInt(3,15);
-                st.addBatch();
-                st.setInt(1,112);
-                st.setString(2,"rohan");
-                st.setInt(3,15);
-                st.addBatch();
-                st.setInt(1,113);
-                st.setString(2,"rohit");
-                st.setInt(3,15);
+                java.sql.PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1,110);
 
                 System.out.println("statement created.");
-                int[] res = st.executeBatch();
-                for (int i = 0; i <res.length; i++) {
-                    System.out.println(res[i]);
-
-                }
-
+                int res = st.executeUpdate();
+                if (res != 0) {
+                    System.out.println("data got deleted");}
 
                 System.out.println("executed");
                 st.close();
@@ -49,9 +35,10 @@ public class BatchExecutionInsert {
             } catch(SQLException e){
                 e.printStackTrace();
                 //throw new RuntimeException(e);
-            }
+            }}}
 
-        }}
+
+
 
 
 

@@ -1,5 +1,3 @@
-package demo;
-
 import java.sql.*;
 
 public class SelectQueries  {

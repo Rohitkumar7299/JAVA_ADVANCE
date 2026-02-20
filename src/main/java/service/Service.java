@@ -1,7 +1,6 @@
-package demo.service;
-import demo.Pooling;
-import demo.entity.Entity;
+package service;
 
+import entity.Entity;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

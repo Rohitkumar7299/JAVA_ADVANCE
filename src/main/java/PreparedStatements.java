@@ -1,11 +1,6 @@
-package demo;
+import java.sql.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-public class UpdateBatchExecution {
+public class PreparedStatements{
 
         private static String url  = "jdbc:postgresql://localhost:5433/jdbc_demo?user=postgres&password=123";
         /*private static String user = "postgres";
@@ -18,28 +13,16 @@ public class UpdateBatchExecution {
                 Connection connection = DriverManager.getConnection(url);
                 System.out.println("connection established");
 
-                String sql = "update connection set name = ? where id=? ";
+                String sql = "insert into connection values (?,?,?)";
 
                 PreparedStatement st = connection.prepareStatement(sql);
-                st.setString(1,"ROHAN");
-                st.setInt(2,102);
-
-                st.addBatch();
-                st.setString(1,"PRANIT");
-                st.setInt(2,104);
-
-                st.addBatch();
-                st.setString(1,"AMAN");
-                st.setInt(2,103);
-
-                st.addBatch();
+                st.setInt(1,111);
+                st.setString(2,"aman");
+                st.setInt(3,15);
                 System.out.println("statement created.");
-                int[] res = st.executeBatch();
-                for (int i = 0; i <res.length; i++) {
-                    System.out.println(res[i]);
-
-                }
-
+                int res = st.executeUpdate();
+                if (res != 0) {
+                    System.out.println("data got inserted");}
 
                 System.out.println("executed");
                 st.close();
@@ -55,9 +38,6 @@ public class UpdateBatchExecution {
             }
 
         }}
-
-
-
 
 
 

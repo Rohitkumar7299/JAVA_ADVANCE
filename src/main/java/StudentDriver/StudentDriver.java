@@ -1,9 +1,8 @@
-package demo.StudentDriver;
+package StudentDriver;
 
-import demo.entity.Entity;
-import demo.service.Service;
+import entity.Entity;
+import service.Service;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 

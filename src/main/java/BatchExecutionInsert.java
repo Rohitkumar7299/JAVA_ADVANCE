@@ -1,6 +1,7 @@
-package demo;
 import java.sql.*;
-public class DeleteBatchProcess {
+
+public class BatchExecutionInsert {
+
         private static String url  = "jdbc:postgresql://localhost:5433/jdbc_demo?user=postgres&password=123";
         /*private static String user = "postgres";
         private static String pswd = "123";*/
@@ -12,18 +13,20 @@ public class DeleteBatchProcess {
                 Connection connection = DriverManager.getConnection(url);
                 System.out.println("connection established");
 
-                String sql = "Delete from connection where id = ?";
+                String sql = "insert into connection values (?,?,?)";
 
                 PreparedStatement st = connection.prepareStatement(sql);
-                st.setInt(1,107);
-
+                st.setInt(1,115);
+                st.setString(2,"aman");
+                st.setInt(3,15);
                 st.addBatch();
-                st.setInt(1,106);
-
+                st.setInt(1,112);
+                st.setString(2,"rohan");
+                st.setInt(3,15);
                 st.addBatch();
-                st.setInt(1,105);
-                st.addBatch();
-
+                st.setInt(1,113);
+                st.setString(2,"rohit");
+                st.setInt(3,15);
 
                 System.out.println("statement created.");
                 int[] res = st.executeBatch();
@@ -47,8 +50,6 @@ public class DeleteBatchProcess {
             }
 
         }}
-
-
 
 
 
